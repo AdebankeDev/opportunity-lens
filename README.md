@@ -2,6 +2,8 @@
 
 **Discover opportunities. Understand your eligibility. Take action.**
 
+🚀 **Live Demo:** [Try OpportunityLens](https://opportunity-lens.streamlit.app/)
+
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Google Gemma 4](https://img.shields.io/badge/Model-Gemma--4--26b--a4b--it-4285F4?logo=google&logoColor=white)](https://ai.google.dev/gemma)
