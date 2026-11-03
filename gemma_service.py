@@ -155,14 +155,14 @@ def get_api_key() -> Optional[str]:
     return None
 
 
-def _get_client() -> genai.Client:
-    """Create and return a configured Google Gen AI client."""
-    api_key = get_api_key()
-    if not api_key:
+def _get_client(api_key: Optional[str] = None) -> genai.Client:
+    """Make a client without storing request-supplied credentials globally."""
+    resolved_key = api_key.strip() if api_key else get_api_key()
+    if not resolved_key:
         raise ValueError(
             "API key not found. Set GEMINI_API_KEY in your .env file or Streamlit secrets."
         )
-    return genai.Client(api_key=api_key)
+    return genai.Client(api_key=resolved_key)
 
 
 # ---------------------------------------------------------------------------
@@ -220,6 +220,7 @@ def extract_opportunity(
     announcement_text: str,
     model: Optional[str] = None,
     max_retries: int = 2,
+    api_key: Optional[str] = None,
 ) -> Tuple[ExtractedOpportunity, str]:
     """
     Send the announcement to Gemma 4 and return a validated ExtractedOpportunity.
@@ -231,7 +232,7 @@ def extract_opportunity(
         ValueError  — API key missing
         RuntimeError — all retries failed
     """
-    client = _get_client()
+    client = _get_client(api_key=api_key)
     model_name = model or PRIMARY_MODEL
 
     prompt = EXTRACTION_USER_TEMPLATE.format(announcement_text=announcement_text)
