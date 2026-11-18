@@ -2,7 +2,7 @@ name: Python tests
 
 on:
   push:
-    branches: [main, feature/fastapi-web-foundation]
+    branches: [main, 'feature/**']
   pull_request:
 
 permissions:
